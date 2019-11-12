@@ -1,0 +1,56 @@
+<div class="modal fade" id="Connection" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Se connecter</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form [formGroup]="connectionForm" (ngSubmit)="connection()">
+        <div class="modal-body mx-3">
+          <div class="md-form mb-5">
+            <i class="fas fa-user prefix grey-text"></i>
+            <input type="text" id="orangeForm-name" class="form-control validate" placeholder="Nom" name="nom"
+              formControlName="nom">
+            <div class="alert alert-warning" *ngIf="nom.touched && nom.invalid">
+              <div *ngIf=nom.errors.required> le champ nom est obligatoire</div>
+              <div *ngIf=nom.errors.minlength> min 2!</div>
+            </div>
+            <label data-error="wrong" data-success="right" for="orangeForm-name"></label>
+          </div>
+          <div class="md-form mb-5">
+            <i class="fas fa-envelope prefix grey-text"></i>
+            <input type="email" id="orangeForm-email" class="form-control validate" placeholder="Email" name="email"
+              formControlName="email">
+            <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
+              <div *ngIf="email.errors.required">
+                l'email est obligatoire !
+              </div>
+              <div *ngIf="email.errors.email">
+                le champ email est invalid !
+              </div>
+            </div>
+            <label data-error="wrong" data-success="right" for="orangeForm-email"></label>
+          </div>
+
+          <div class="md-form mb-4">
+            <i class="fas fa-lock prefix grey-text"></i>
+            <input type="password" id="orangeForm-pass" class="form-control validate" placeholder="Mot de passe "
+              name="pass" formControlName="pass">
+            <div class="alert alert-danger" *ngIf="pass.touched && pass.invalid">
+              <div *ngIf="pass.errors.required">
+                le mdp est obligatoire !
+              </div>
+            </div>
+            <label data-error="wrong" data-success="right" for="orangeForm-pass"></label>
+          </div>
+
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <input type="submit" class="btn btn-deep-orange" value="Connection" />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

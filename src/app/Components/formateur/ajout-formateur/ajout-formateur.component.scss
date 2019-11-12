@@ -1,0 +1,17 @@
+.file-field {
+  &.medium .file-path-wrapper {
+    height: 3rem;
+
+    .file-path {
+      height: 2.8rem;
+    }
+  }
+
+  &.big-2 .file-path-wrapper {
+    height: 3.7rem;
+
+    .file-path {
+      height: 3.5rem;
+    }
+  }
+}
