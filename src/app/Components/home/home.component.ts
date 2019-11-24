@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class HomeComponent {
   isLogged:boolean;
+  isLoggedAdmin:boolean;
   title = 'projetdemo';
   constructor(private t: Title,private _fu:FormateurService,private router: Router,private toastr:ToastrService) {
     this.t.setTitle("FormaLab");
@@ -31,7 +32,8 @@ export class HomeComponent {
   }
 
   ngOnInit(): void {
-    this.isLogged=this._fu.isLoggedAdmin();
+    this.isLogged=this._fu.isLoggedIn();
+    this.isLoggedAdmin=this._fu.isLoggedAdmin();
   }
 
   deco() {

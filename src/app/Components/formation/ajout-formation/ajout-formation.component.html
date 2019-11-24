@@ -1,1 +1,101 @@
-<p>ajout-formation works!</p>
+<section class="page-section bg-dark text-white" id="AjoutFormation">
+    <div class="container text-center">
+        <a class="btn btn-light btn-xl js-scroll-trigger" data-toggle="modal" data-target="#modalRegisterForm1"
+            style="color: black;">Ajouter Formation</a>
+    </div>
+</section>
+<div class="modal fade" id="modalRegisterForm1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Ajouter Formation</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form [formGroup]="addFormationForm" (ngSubmit)="addFormation()">
+
+                <div class="modal-body mx-3">
+                    <div class="md-form mb-5">
+                        <i class="fas fa-heading prefix grey-text"></i>
+
+                        <input type="text" class="form-control validate" placeholder="titre" name="titre"
+                            formControlName="titre">
+                        <div class="alert alert-warning" *ngIf="titre.touched && titre.invalid">
+                            <div *ngIf=titre.errors.required> le champ titre est obligatoire</div>
+                            <div *ngIf=titre.errors.minlength> min 2!</div>
+                        </div>
+                        <label data-error="wrong" data-success="right" for="orangeForm-name"></label>
+                    </div>
+
+                    <div class="md-form mb-5">
+                        <i class="fas fa-box-open prefix grey-text"></i>
+
+                        <input type="text" class="form-control validate" placeholder="description" name="description"
+                            formControlName="description">
+                        <div class="alert alert-warning" *ngIf="description.touched && description.invalid">
+                            <div *ngIf=description.errors.required> le champ description est obligatoire</div>
+                            <div *ngIf=description.errors.minlength> min 2!</div>
+                        </div>
+                        <label data-error="wrong" data-success="right" for="orangeForm-name"></label>
+                    </div>
+
+                    <div class="md-form mb-5">
+                        <i class="fas fa-hourglass-start prefix grey-text"></i>
+                        <input type="text" class="form-control validate" placeholder="volume_horaire"
+                            name="volume_horaire" formControlName="volume_horaire">
+                        <div class="alert alert-warning" *ngIf="volume_horaire.touched && volume_horaire.invalid">
+                            <div *ngIf=volume_horaire.errors.required> le champ volume_horaire est obligatoire</div>
+                            <div *ngIf=prix.errors.required> le champ prix est obligatoire</div>
+                        </div>
+                        <label data-error="wrong" data-success="right" for="orangeForm-name"></label>
+                    </div>
+
+                    <div class="md-form mb-5">
+                        <i class="fas fa-hand-holding-usd prefix grey-text"></i>
+                        <input type="text" class="form-control validate" placeholder="Prix" name="prix"
+                            formControlName="prix">
+                        <div class="alert alert-warning" *ngIf="prix.touched && prix.invalid">
+                            <div *ngIf=prix.errors.required> le champ prix est obligatoire</div>
+                            
+                        </div>
+                        <label data-error="wrong" data-success="right" for="orangeForm-name"></label>
+                    </div>
+
+                    <div class="md-form mb-5">
+                        <i class="fas fa-user-tie prefix grey-text"></i>
+                        <input type="text" class="form-control validate" placeholder="Formateur" name="idformateur"
+                            formControlName="idformateur">
+                        <div class="alert alert-warning" *ngIf="idformateur.touched && idformateur.invalid">
+                            <div *ngIf=idformateur.errors.required> le champ idformateur est obligatoire</div>
+                            <div *ngIf=idformateur.errors.minlength> min 2!</div>
+                        </div>
+                        <label data-error="wrong" data-success="right" for="orangeForm-name"></label>
+                    </div>
+                </div>
+
+                <div class="md-form">
+                    <div class="file-field big-2">
+                        <div class="btn btn-rounded peach-gradient btn-lg float-left">
+                            <span>Choose file</span>
+                            <input type="file" name="img" formControlName="img" accept="image/*"
+                                (change)=" onFileSelected($event)">
+                        </div>
+                        <div class="alert alert-warning" *ngIf="img.touched && img.invalid">
+                            <div *ngIf=img.errors.required> le champ img est obligatoire</div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <br>
+
+                <div class="modal-footer d-flex justify-content-center">
+                    <input class="btn btn-deep-orange" type="submit" value="Ajouter"
+                        [disabled]="addFormationForm.invalid" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

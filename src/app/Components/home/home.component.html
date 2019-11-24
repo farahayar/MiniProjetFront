@@ -26,7 +26,7 @@
 
 
 <!-- Inscription Section -->
-<section class="page-section bg-primary" id="Inscription">
+<section *ngIf="!isLogged" class="page-section bg-primary" id="Inscription">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-8 text-center">
@@ -77,8 +77,9 @@
 <!-- AjoutFormateur Section -->
 
 <!-- Formation Section -->
-<!-- <app-lister-formation></app-lister-formation> -->
+<app-lister-formation></app-lister-formation>
 <!-- AjoutFormateur Section -->
+<app-ajout-formation *ngIf="isLoggedAdmin"></app-ajout-formation>
 
 <!-- Contact Section -->
 <section class="page-section" id="contact">

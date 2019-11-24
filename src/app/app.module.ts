@@ -54,7 +54,7 @@ import { AdminGuard } from './Guards/admin.guard';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
-   
+    MDBBootstrapModule,
     ToastrModule.forRoot({
       timeOut: 1000,
       positionClass: 'toast-bottom-right',

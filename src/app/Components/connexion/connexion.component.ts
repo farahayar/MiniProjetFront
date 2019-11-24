@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { FormateurService } from 'src/app/Services/formateur.service';
 import { Formateur } from 'src/app/Models/formateur';
 import { HomeComponent } from '../home/home.component';
-
+//import $ from 'jquery'
 @Component({
   selector: 'app-connexion',
   templateUrl: './connexion.component.html',
@@ -57,6 +57,8 @@ export class ConnexionComponent implements OnInit {
     const f = new Formateur(data.nom, null, null, null, null, data.email, null, null, data.pass, null);
     
     this._fs.formateurConnection(f).subscribe((res) => {
+      //close
+      //$('#Connection').close();
       this.route.navigate(['home']);
   
       this.toastr.success("connected");

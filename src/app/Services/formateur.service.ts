@@ -12,6 +12,7 @@ export class FormateurService {
   private formateurListerUrl = "http://localhost:3000/formateur/Lister";
   private formateurinscriptioUrl = "http://localhost:3000/formateur/inscriptiopn";
   private formateurAjoutUrl = "http://localhost:3000/formateur/ajoutFormateur";
+  private formateurSuppUrl = "http://localhost:3000/formateur/supprimerFormateur/";
 
   constructor(private http: HttpClient) { }
   //connection  
@@ -29,6 +30,9 @@ export class FormateurService {
   //inscription
   formateurIncription(formateur: Formateur) {
     return this.http.post<any>(this.formateurinscriptioUrl, formateur);
+  }
+  formateurSupprimer(email:String) {
+    return this.http.delete<any>(this.formateurSuppUrl+email);
   }
 
   //for guards authGuard

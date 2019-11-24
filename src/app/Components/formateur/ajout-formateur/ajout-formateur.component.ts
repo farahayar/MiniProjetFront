@@ -111,6 +111,8 @@ export class AjoutFormateurComponent implements OnInit {
 
     this._fs.formateurAjout(fd).subscribe((res)=>{
       this.toastr.success("Ajout avec succé!");
+      this.router.navigate(['/home']);
+      this.router.navigate(['']);
     },(err)=>{
       this.toastr.error("Désolé votre ajout n'a pas été effectué!")
     });
