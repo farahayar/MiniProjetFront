@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import * as bootstrap from 'bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ConnexionComponent } from './components/connexion/connexion.component';
@@ -28,6 +28,8 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormateurService } from './Services/formateur.service';
 import { AuthGuard } from './auth.guard';
 import { AdminGuard } from './Guards/admin.guard';
+import { InscriFormalabeurComponent } from './Components/Formalabeur/inscri-formalabeur/inscri-formalabeur.component';
+
 
 @NgModule({
   declarations: [
@@ -46,6 +48,8 @@ import { AdminGuard } from './Guards/admin.guard';
     ModifierFormationComponent,
     ConsulterFormationComponent,
     ConsulterFormateurComponent,
+    InscriFormalabeurComponent,
+    
   ],
   imports: [
     BrowserModule,

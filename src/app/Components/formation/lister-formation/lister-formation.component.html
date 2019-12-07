@@ -1,49 +1,273 @@
 <section class="page-section bg-primary" id="Inscription">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-8 text-center">
-          <h2 class="text-white mt-0">Nos Formations</h2>
-          <hr class="divider light my-4">
-          <p class="text-white-50 mb-4">FormaLab vous propose plusieurs formations continues sur les nouvelles
-            technologies, langages de programmation et les frameworks qui sont en tendance dans le marché international.
-          </p>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center">
+        <h2 class="text-white mt-0">Nos Formations</h2>
+        <hr class="divider light my-4">
+        <p class="text-white-50 mb-4">FormaLab vous propose plusieurs formations continues sur les nouvelles
+          technologies, langages de programmation et les frameworks qui sont en tendance dans le marché international.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<div id="Formations">
+  <div *ngIf="formations.length > 0;then listeformations else noformations"></div>
+  <ng-template #noformations>
+    <div class="alert alert-warning">Aucune formation n'est ajouté</div>
+  </ng-template>
+  <ng-template #listeformations>
+    <section id="portfolio">
+      <div class="container-fluid p-0">
+        <div class="row no-gutters">
+          <div class="col-lg-4 col-sm-6" *ngFor="let formation of formations;let j=index">
+            <a class="portfolio-box" href="" data-toggle="modal" data-target="#formationcons"
+              (click)="ConslterFormation(formation)">
+              <img class="img-fluid" [src]="formations[j].image_Formation" alt="" width="900xp" height="900xp">
+              <div class="portfolio-box-caption">
+                <div class="project-name">
+                  {{ formation.titre }}
+                </div>
+                <div class="project-category text-white-50">
+                  {{ formation.description }}
+                </div>
+                <div class="project-category text-white-50">
+                  {{ formation.volume_horaire }} H
+                </div>
+                <div class="project-category text-white-50">
+                  {{ formation.prix }} DT
+                </div>
+
+              </div>
+            </a>
+            <!--Modal: Login with Avatar Form-->
+            <div class="modal fade" id="formationcons" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog cascading-modal modal-avatar " role="document">
+                <!--Content-->
+                <div class="modal-content">
+
+                  <!--Header-->
+                  <div class="modal-header">
+                    <img [src]="img" alt="avatar" class="rounded-circle img-responsive">
+                  </div>
+                  <!--Body-->
+                  <div class="modal-body   mb-1">
+
+                    <h5 class="mt-1 text-center mb-2"> {{ titre}} </h5>
+
+                    <div class="md-form ml-0 mr-0">
+                      <table>
+                        <tr>
+                          <th>
+                            <h5 class="mt-1 mb-2">Description </h5>
+                          </th>
+                          <th>
+                            <h5 class="mt-1 mb-2">: {{ description }} </h5>
+                          </th>
+                        </tr>
+                        <tr>
+                          <th>
+                            <h5 class="mt-1 mb-2">Prix </h5>
+                          </th>
+                          <th>
+                            <h5 class="mt-1 mb-2">: {{ prix }} </h5>
+                          </th>
+                          <th><img [src]="imgFormateur" alt="avatar" class="rounded-circle img-responsive" width="100"
+                              height="100"></th>
+                        </tr>
+                        <tr>
+                          <th>
+                            <h5 class="mt-1 mb-2">volume horaire </h5>
+                          </th>
+                          <th>
+                            <h5 class="mt-1 mb-2">: {{ volume_horaire }} </h5>
+                          </th>
+                        </tr>
+
+                      </table>
+                    </div>
+
+                    <div class="text-center mt-4">
+                      <button class="btn btn-orange mt-1" *ngIf="isLoggedAdmin">Modifier <i
+                          class="fas fa-sign-in ml-1"></i></button>
+                      <button class="btn btn-orange mt-1" *ngIf="isLoggedAdmin"
+                        (click)="supprimerFormation(titre)">Supprimer<i class="fas fa-sign-in ml-1"></i></button>
+                      <!-- <button class="btn btn-orange mt-1" *ngIf="isLoggedFormateur"
+                        (click)="ConslterFormationformalabeur(formation)">Consulter<i
+                          class="fas fa-sign-in ml-1"></i></button> -->
+                      <button class="btn btn-orange mt-1" *ngIf="!isLoggedAdmin && !isLoggedFormateur"
+                        data-toggle="modal" data-target="#formInsc" (click)="closemodal()">Inscription<i
+                          class="fas fa-sign-in ml-1"></i></button>
+                      <button class="btn btn-orange mt-1" *ngIf="isLoggedFormateur"
+                      data-toggle="modal" data-target="#listeInscriptions" (click)="closecons()">Liste des Inscriptions<i
+                          class="fas fa-sign-in ml-1"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </ng-template>
+</div>
+
+<!-- Inscription -->
+
+<div class="modal fade" id="formInsc" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">S'inscrir</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form [formGroup]="inscriptionForm" (ngSubmit)="sinscrir()">
+
+        <div class="modal-body mx-3">
+          <div class="md-form mb-5">
+            <i class="fas fa-user prefix grey-text"></i>
+            <input type="text" class="form-control validate" placeholder="nom" name="nom" formControlName="nom">
+            <div class="alert alert-warning" *ngIf="nom.touched && nom.invalid">
+              <div *ngIf=nom.errors.required> le champ nom est obligatoire</div>
+              <div *ngIf=nom.errors.minlength> min 2!</div>
+            </div>
+            <label data-error="wrong" data-success="right" for="orangeForm-name"></label>
+          </div>
+
+          <div class="md-form mb-5">
+            <i class="fas fa-user prefix grey-text"></i>
+            <input type="text" class="form-control validate" placeholder="Prenom" name="prenom"
+              formControlName="prenom">
+            <div class="alert alert-warning" *ngIf="prenom.touched && prenom.invalid">
+              <div *ngIf=prenom.errors.required> le champ prenom est obligatoire</div>
+              <div *ngIf=prenom.errors.minlength> min 2!</div>
+            </div>
+            <label data-error="wrong" data-success="right" for="orangeForm-name"></label>
+          </div>
+
+          <div class="md-form mb-5">
+            <i class="fas fa-baby-carriage prefix grey-text"></i>
+            <input type="text" class="form-control validate" placeholder="Age" name="age" formControlName="age">
+            <div class="alert alert-warning" *ngIf="age.touched && age.invalid">
+              <div *ngIf=age.errors.required> le champ age est obligatoire</div>
+              <div *ngIf=age.errors.minlength> min 2!</div>
+            </div>
+            <label data-error="wrong" data-success="right" for="orangeForm-name"></label>
+          </div>
+
+          <div class="md-form mb-5">
+            <i class="fas fa-envelope prefix grey-text"></i>
+            <input type="email" class="form-control validate" placeholder="Email" name="email" formControlName="email">
+            <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
+              <div *ngIf="email.errors.required">
+                l'email est obligatoire !
+              </div>
+              <div *ngIf="email.errors.email">
+                le champ email est invalid !
+              </div>
+            </div>
+            <label data-error="wrong" data-success="right" for="orangeForm-email"></label>
+          </div>
+
+          <div class="md-form mb-5">
+            <i class="fas fa-phone prefix grey-text"></i>
+            <input type="text" class="form-control validate" placeholder="Tel" name="tel" formControlName="tel">
+            <div class="alert alert-danger" *ngIf="tel.touched && tel.invalid">
+              <div *ngIf="tel.errors.required">
+                le champ tel est obligatoire !
+              </div>
+              <div *ngIf="tel.errors.pattern">
+                tel invalid!
+              </div>
+              <div *ngIf="tel.errors.minlength">
+                min 8 chif !
+              </div>
+            </div>
+            <label data-error="wrong" data-success="right" for="orangeForm-name"></label>
+          </div>
+
+          <div class="md-form mb-5">
+            <i class="fas fa-fingerprint prefix grey-text"></i>
+            <input type="text" class="form-control validate" placeholder="Cin" name="cin" formControlName="cin">
+            <div class="alert alert-warning" *ngIf="cin.touched && cin.invalid">
+              <div *ngIf=cin.errors.required> le champ cin est obligatoire</div>
+              <div *ngIf=cin.errors.minlength> min 2!</div>
+            </div>
+            <label data-error="wrong" data-success="right" for="orangeForm-name"></label>
+          </div>
+
+          <div class="md-form mb-5">
+            <i class="fab fa-facebook-f prefix grey-text"></i>
+            <input type="text" class="form-control validate" placeholder="lienfb" name="lienfb"
+              formControlName="lienfb">
+            <div class="alert alert-warning" *ngIf="lienfb.touched && lienfb.invalid">
+              <div *ngIf=lienfb.errors.required> le champ lienfb est obligatoire</div>
+              <div *ngIf=lienfb.errors.minlength> min 2!</div>
+            </div>
+            <label data-error="wrong" data-success="right" for="orangeForm-name"></label>
+          </div>
+
+
+
+        </div>
+        <br>
+
+        <div class="modal-footer d-flex justify-content-center">
+          <input class="btn btn-deep-orange" type="submit" value="S'inscrir" [disabled]="inscriptionForm.invalid" />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Liste des inscriptions -->
+
+<div class="modal fade" id="listeInscriptions" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog cascading-modal  " role="document">
+    <!--Content-->
+    <div class="modal-content">
+
+      <div class="modal-body   mb-1">
+
+        <h5 class="mt-1 text-center mb-2"> {{ titre}} </h5>
+
+        <div class="md-form ml-0 mr-0">
+            <div *ngIf="users.length > 0;then userr else nouser"></div>
+            <ng-template #nouser>
+                <div class="alert alert-warning">Pas de participants</div>
+            </ng-template>
+        
+            <ng-template #userr>
+        
+                <table class="table">
+                    <thead>
+                        <th>Num</th>
+                        <th>Nom</th>
+                        <th>Prenom</th>
+                        <th>Age</th>
+                        <th></th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of users; let i=index">
+                            <td>{{ i+1 }}</td>
+                            <td>{{ user.nom}}</td>
+                            <td>{{ user.prenom}}</td>
+                            <td>{{ user.age}}</td>
+                            <td><img class="img-fluid" [src]="users[i].img" alt=""></td>
+                        </tr>
+        
+                    </tbody>
+        
+                </table>
+        
+            </ng-template>
         </div>
       </div>
     </div>
-  </section>
-  <div id="Formations">
-    <div *ngIf="formations.length > 0;then listeformations else noformations"></div>
-    <ng-template #noformations>
-      <div class="alert alert-warning">Aucune formation n'est ajouté</div>
-    </ng-template>
-    <ng-template #listeformations>
-      <section id="portfolio">
-        <div class="container-fluid p-0" >
-          <div class="row no-gutters">
-            <div class="col-lg-4 col-sm-6" *ngFor="let formation of formations;let j=index">
-              <a class="portfolio-box" href="">
-                <img class="img-fluid" [src]="formations[j].image_Formation" alt="">
-                <div class="portfolio-box-caption">
-                    <div class="project-name">
-                        {{ formation.titre }}
-                      </div>
-                  <div class="project-category text-white-50">
-                      {{ formation.description }} 
-                  </div>
-                  <div class="project-category text-white-50">
-                      {{ formation.volume_horaire }}  H
-                  </div>
-                  <div class="project-category text-white-50">
-                     {{ formation.prix }} DT
-                  </div>
-                  
-                </div>
-              </a>
-            </div>
-  
-          </div>
-        </div>
-      </section>
-    </ng-template>
   </div>
-  
+</div>

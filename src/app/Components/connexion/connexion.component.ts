@@ -6,7 +6,9 @@ import { Router } from '@angular/router';
 import { FormateurService } from 'src/app/Services/formateur.service';
 import { Formateur } from 'src/app/Models/formateur';
 import { HomeComponent } from '../home/home.component';
+//import * as $AB from 'jquery';
 //import $ from 'jquery'
+import * as bootstrap from "bootstrap"
 @Component({
   selector: 'app-connexion',
   templateUrl: './connexion.component.html',
@@ -15,6 +17,7 @@ import { HomeComponent } from '../home/home.component';
 export class ConnexionComponent implements OnInit {
   connectionForm: FormGroup;
   formateur: Formateur;
+
   constructor(private t: Title, private fb: FormBuilder, private _fs: FormateurService, private toastr: ToastrService, private route: Router) {
     this.t.setTitle("Connexion");
     this.connectionForm = fb.group(
@@ -32,8 +35,9 @@ export class ConnexionComponent implements OnInit {
 
         ])
       })
-    
+
   }
+
 
   get nom() {
     return this.connectionForm.get('nom');
@@ -50,20 +54,26 @@ export class ConnexionComponent implements OnInit {
   }
 
   connection() {
-    console.log("aaaaaaaa");
+
+    var closeModal = function () {
     
+        $('#Connection').modal('hide');
+     
+    }
+
     const fd = new FormData();
     let data = this.connectionForm.value;
     const f = new Formateur(data.nom, null, null, null, null, data.email, null, null, data.pass, null);
-    
+
     this._fs.formateurConnection(f).subscribe((res) => {
-      //close
-      //$('#Connection').close();
-      this.route.navigate(['home']);
-  
+
+      closeModal();
+      this.route.navigate(['/home']);
+      //this.route.navigate(['']);
       this.toastr.success("connected");
+      this.ngOnInit();
       localStorage.setItem('token', res.token);
-      
+
     }, (err) => {
       this.toastr.error(err.error.message);
       console.log(err);

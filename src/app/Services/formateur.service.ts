@@ -45,11 +45,27 @@ export class FormateurService {
     let token = localStorage.getItem('token');
     const helper = new JwtHelperService();
     const decodedLogin = helper.decodeToken(token);
-    console.log("tokrn"+decodedLogin.admin);
+    console.log("token"+decodedLogin.admin);
 
     if (token) {
 
       if (decodedLogin.admin === "active") {
+        return true;
+      }
+
+    }
+    return false
+  }
+
+  isLoggedFormateur() {
+    let token = localStorage.getItem('token');
+    const helper = new JwtHelperService();
+    const decodedLogin = helper.decodeToken(token);
+    console.log("token"+decodedLogin.admin);
+
+    if (token) {
+
+      if (decodedLogin.admin === "desactive") {
         return true;
       }
 

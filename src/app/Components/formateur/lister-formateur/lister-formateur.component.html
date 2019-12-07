@@ -35,7 +35,7 @@
             <!--Modal: Login with Avatar Form-->
             <div class="modal fade" id="modalLoginAvatar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
               aria-hidden="true">
-              <div class="modal-dialog cascading-modal modal-avatar modal-sm" role="document">
+              <div class="modal-dialog cascading-modal modal-avatar" role="document">
                 <!--Content-->
                 <div class="modal-content">
 
@@ -65,6 +65,7 @@
                     <div class="text-center mt-4">
                       <button class="btn btn-orange mt-1"  *ngIf="isLoggedAdmin">Modif <i class="fas fa-sign-in ml-1"></i></button>
                       <button class="btn btn-orange mt-1"  *ngIf="isLoggedAdmin" (click)="supprimerFormateur(email)">Sup<i class="fas fa-sign-in ml-1"></i></button>
+                     
                     </div>
 
                   </div>

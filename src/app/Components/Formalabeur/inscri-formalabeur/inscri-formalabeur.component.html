@@ -1,20 +1,14 @@
-<section class="page-section bg-dark text-white" id="AjoutFormateur">
-    <div class="container text-center">
-        <a class="btn btn-light btn-xl js-scroll-trigger" data-toggle="modal" data-target="#modalRegisterForm"
-            style="color: black;">Ajouter Formateur</a>
-    </div>
-</section>
-<div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+<div class="modal fade" id="InscriptionForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
-                <h4 class="modal-title w-100 font-weight-bold">Ajout Formateur</h4>
+                <h4 class="modal-title w-100 font-weight-bold">Inscription Formalabeur</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form [formGroup]="addFormateurForm" (ngSubmit)="addFormateur()">
+            <form [formGroup]="addFormalabeurForm" (ngSubmit)="addFormalabeur()">
 
                 <div class="modal-body mx-3">
                     <div class="md-form mb-5">
@@ -23,7 +17,7 @@
                             formControlName="nom">
                         <div class="alert alert-warning" *ngIf="nom.touched && nom.invalid">
                             <div *ngIf=nom.errors.required> le champ nom est obligatoire</div>
-                            <div *ngIf=nom.errors.minlength> min 2!</div>
+                            <div *ngIf=nom.errors.minlength> min 3!</div>
                         </div>
                         <label data-error="wrong" data-success="right" for="orangeForm-name"></label>
                     </div>
@@ -34,7 +28,7 @@
                             formControlName="prenom">
                         <div class="alert alert-warning" *ngIf="prenom.touched && prenom.invalid">
                             <div *ngIf=prenom.errors.required> le champ prenom est obligatoire</div>
-                            <div *ngIf=prenom.errors.minlength> min 2!</div>
+                            <div *ngIf=prenom.errors.minlength> min 3!</div>
                         </div>
                         <label data-error="wrong" data-success="right" for="orangeForm-name"></label>
                     </div>
@@ -51,12 +45,12 @@
                     </div>
 
                     <div class="md-form mb-5">
-                        <i class="fas fa-user prefix grey-text"></i>
-                        <input type="text" class="form-control validate" placeholder="Fonction" name="fonction"
-                            formControlName="fonction">
-                        <div class="alert alert-warning" *ngIf="fonction.touched && fonction.invalid">
-                            <div *ngIf=fonction.errors.required> le champ fonction est obligatoire</div>
-                            <div *ngIf=fonction.errors.minlength> min 2!</div>
+                        <i class="fas fa-fingerprint prefix grey-text"></i>
+                        <input type="text" class="form-control validate" placeholder="CIN" name="cin"
+                            formControlName="cin">
+                        <div class="alert alert-warning" *ngIf="cin.touched && cin.invalid">
+                            <div *ngIf=cin.errors.required> le champ cin est obligatoire</div>
+                            <div *ngIf=cin.errors.minlength> min 7!</div>
                         </div>
                         <label data-error="wrong" data-success="right" for="orangeForm-name"></label>
                     </div>
@@ -95,15 +89,28 @@
                     </div>
 
                     <div class="md-form mb-5">
-                        <i class="fas fa-hand-holding-usd prefix grey-text"></i>
-                        <input type="text" class="form-control validate" placeholder="Salaire" name="salaire"
-                            formControlName="salaire">
-                        <div class="alert alert-warning" *ngIf="salaire.touched && salaire.invalid">
-                            <div *ngIf=salaire.errors.required> le champ salaire est obligatoire</div>
-                            <div *ngIf=salaire.errors.minlength> min 2!</div>
+                        <i class="fab fa-facebook-f prefix grey-text"></i>
+                        <input type="text" class="form-control validate" placeholder="Lien FB" name="lienfb"
+                            formControlName="lienfb">
+                        <div class="alert alert-warning" *ngIf="lienfb.touched && lienfb.invalid">
+                            <div *ngIf=pwd.errors.required> le champ Lien FB est obligatoire</div>
+
                         </div>
                         <label data-error="wrong" data-success="right" for="orangeForm-name"></label>
                     </div>
+
+                    <div class="md-form mb-5">
+                        <i class="fas fa-lock prefix grey-text"></i>
+                        <input type="password" class="form-control validate" placeholder="Password" name="pwd"
+                            formControlName="pwd">
+                        <div class="alert alert-warning" *ngIf="pwd.touched && pwd.invalid">
+                            <div *ngIf=pwd.errors.required> le champ pwd est obligatoire</div>
+                            <div *ngIf=pwd.errors.minlength> min 4!</div>
+                        </div>
+                        <label data-error="wrong" data-success="right" for="orangeForm-name"></label>
+                    </div>
+
+
 
 
                     <div class="md-form">
@@ -124,7 +131,7 @@
 
                 <div class="modal-footer d-flex justify-content-center">
                     <input class="btn btn-deep-orange" type="submit" value="Ajouter"
-                        [disabled]="addFormateurForm.invalid" />
+                        [disabled]="addFormalabeurForm.invalid" />
                 </div>
             </form>
         </div>

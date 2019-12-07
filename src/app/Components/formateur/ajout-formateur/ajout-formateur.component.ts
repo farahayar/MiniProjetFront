@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { FormateurService } from 'src/app/Services/formateur.service';
 import { Formateur } from 'src/app/Models/formateur';
+//import * as $ from "jQuery"
+import * as bootstrap from "bootstrap"
 
 @Component({
   selector: 'app-ajout-formateur',
@@ -76,7 +78,7 @@ export class AjoutFormateurComponent implements OnInit {
   get tel() {
     return this.addFormateurForm.get('tel');
   }
-  
+
   get email() {
     return this.addFormateurForm.get('email');
   }
@@ -95,25 +97,29 @@ export class AjoutFormateurComponent implements OnInit {
 
   }
 
-  
+
 
   ngOnInit() {
   }
 
-  addFormateur(){
-    console.log("aaaaaaaa");
-    
+  addFormateur() {
+
+    var closeModal1 = function () {
+
+      $('#AjoutFormateur').modal('hide');
+
+    }
     const fd = new FormData();
     let data = this.addFormateurForm.value;
-    const f = new Formateur(data.nom,data.prenom,data.age,data.fonction,data.tel,data.email,data.salaire,null,null,data.image);
+    const f = new Formateur(data.nom, data.prenom, data.age, data.fonction, data.tel, data.email, data.salaire, null, null, data.image);
     fd.append('image', this.selectedFile, this.selectedFile.name);
     fd.append('formateur', JSON.stringify(f));
 
-    this._fs.formateurAjout(fd).subscribe((res)=>{
+    this._fs.formateurAjout(fd).subscribe((res) => {
+      closeModal1();
       this.toastr.success("Ajout avec succé!");
-      this.router.navigate(['/home']);
-      this.router.navigate(['']);
-    },(err)=>{
+      this.ngOnInit();
+    }, (err) => {
       this.toastr.error("Désolé votre ajout n'a pas été effectué!")
     });
 
