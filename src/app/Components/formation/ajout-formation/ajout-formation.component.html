@@ -81,7 +81,7 @@
                             <span>Choose file</span>
                             <input type="file" name="img" formControlName="img" accept="image/*"
                                 (change)=" onFileSelected($event)">
-                        </div>
+                        </div> 
                         <div class="alert alert-warning" *ngIf="img.touched && img.invalid">
                             <div *ngIf=img.errors.required> le champ img est obligatoire</div>
                         </div>

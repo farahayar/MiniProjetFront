@@ -1,0 +1,28 @@
+<div *ngIf="formations.length > 0;then listeformations else noformations"></div>
+  <ng-template #noformations>
+    <div class="alert alert-warning">Aucune formation n'est ajouté</div>
+  </ng-template>
+
+<div class="container">
+    <h2>Les Formations Finis</h2>
+    <ul class="responsive-table">
+      <li class="table-header">
+       <div class="col col-1">titre</div>
+          <div class="col col-2">Description </div>
+          <div class="col col-3">Prix</div>
+          <div class="col col-4">volume_horaire </div>
+        
+      </li>
+   
+      <li class="table-row" *ngFor="let formation of formations;let j=index">
+           <div class=" col col-1">  {{ formation.titre }}</div>
+           <div class=" col col-2"> {{ formation.description }} </div>
+           <div class="col col-3"> {{ formation.volume_horaire }}H</div>  
+           <div class="col col-4 "> {{ formation.prix }} DT</div>           
+                    
+          
+                    
+        </li>
+      
+    </ul>
+  </div>

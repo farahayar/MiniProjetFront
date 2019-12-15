@@ -19,6 +19,7 @@ export class FormationService {
   private formalabeurConnectionUrl = "http://localhost:3000/formalabeur/connection";
   private formationSupprimerUrl = "http://localhost:3000/formateur/supprimerFormation/";
   private getImageFormatUrl = "http://localhost:3000/formateur/getImageFormateur/";
+  private ListerFormationfinisUrl="http://localhost:3000/formateur/Listerformation2/";
 
   constructor(private http: HttpClient) { }
   
@@ -30,6 +31,9 @@ export class FormationService {
 
   formationLister() {
     return this.http.get<any>(this.formationListerUrl);
+  }
+  ListerFormationfinis(){
+    return this.http.get<any>(this.ListerFormationfinisUrl);
   }
   formalabeurConnection(formalabeur: User) {
     return this.http.post<any>(this.formalabeurConnectionUrl, formalabeur);

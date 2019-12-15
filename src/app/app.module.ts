@@ -29,6 +29,7 @@ import { FormateurService } from './Services/formateur.service';
 import { AuthGuard } from './auth.guard';
 import { AdminGuard } from './Guards/admin.guard';
 import { InscriFormalabeurComponent } from './Components/Formalabeur/inscri-formalabeur/inscri-formalabeur.component';
+import { FormationFinisComponent } from './Components/formation-finis/formation-finis.component';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import { InscriFormalabeurComponent } from './Components/Formalabeur/inscri-form
     ConsulterFormationComponent,
     ConsulterFormateurComponent,
     InscriFormalabeurComponent,
+    FormationFinisComponent,
     
   ],
   imports: [
