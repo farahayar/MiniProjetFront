@@ -13,6 +13,7 @@ export class FormateurService {
   private formateurinscriptioUrl = "http://localhost:3000/formateur/inscriptiopn";
   private formateurAjoutUrl = "http://localhost:3000/formateur/ajoutFormateur";
   private formateurSuppUrl = "http://localhost:3000/formateur/supprimerFormateur/";
+  private activateUrl = "http://localhost:3000/formateur/acitvate/";
 
   constructor(private http: HttpClient) { }
   //connection  
@@ -34,6 +35,13 @@ export class FormateurService {
   formateurSupprimer(email:String) {
     return this.http.delete<any>(this.formateurSuppUrl+email);
   }
+
+  //activation
+  activateAdmin(id: string) {
+    return this.http.put<any>(this.activateUrl + id, id);
+
+  }
+
 
   //for guards authGuard
   isLoggedIn() {

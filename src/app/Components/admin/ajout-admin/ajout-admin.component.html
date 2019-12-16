@@ -1,1 +1,36 @@
-<p>ajout-admin works!</p>
+<div class="container">
+
+    <h2>Formateur</h2>
+
+    <table class="table">
+        <thead>
+            <th>Image Formateur</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Age</th>
+            <th>Fonction</th>
+            <th>Numéro Téléphone</th>
+            <th>Email</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let formateur of formateurs">
+                <td>{{ formateur.image_formateur }}</td>
+                <td>{{ formateur.nom}}</td>
+                <td>{{ formateur.prenom}}</td>
+                <td>{{ formateur.age}}</td>
+                <td>{{ formateur.fonction}}</td>
+                <td>{{ formateur.numero_tel}}</td>
+                <td>{{ formateur.email}}</td>
+                <td>
+                    <div>
+                        <button *ngIf="formateur.admin =='desactive'" type="button" class="btn btn-success"
+                            (click)="activerAdmin(formateur)">Active</button>
+                        <button *ngIf="formateur.admin =='active'" type="button" class="btn btn-danger"
+                            (click)="activerAdmin(formateur)">Descativer</button>
+                    </div>
+                </td>
+                
+            </tr>
+        </tbody>
+    </table>
+</div>

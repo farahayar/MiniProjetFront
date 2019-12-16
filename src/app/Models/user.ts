@@ -1,59 +1,40 @@
 export class User {
-    static pwd: String;
-    static img: String;
-      
-      constructor(
-          private _nom?: String,
-          private _prenom?: String, 
-          private _age?: number ,
-          private _tel?: String,
-          private _email?: String,
-          private _cin?: String ,
-          private _lienfb?: String){}
-         
-          public get email(): String {
-              return this._email;
-          }
-          public set email(value: String) {
-              this._email = value;
-          }
-          public get tel(): String {
-              return this._tel;
-          }
-          public set tel(value: String) {
-              this._tel = value;
-          }
-         
-          public get lienfb(): String {
-              return this._lienfb;
-          }
-          public set lienfb(value: String) {
-              this._lienfb = value;
-          }
-          public get cin(): String {
-              return this._cin;
-          }
-          public set cin(value: String) {
-              this._cin = value;
-          }
-          public get age(): number {
-              return this._age;
-          }
-          public set age(value: number) {
-              this._age = value;
-          }
-          public get prenom(): String {
-              return this._prenom;
-          }
-          public set prenom(value: String) {
-              this._prenom = value;
-          }
-          public get nom(): String {
-              return this._nom;
-          }
-          public set nom(value: String) {
-              this._nom = value;
-          }
-      
-  }
-  
+    constructor(
+        private _email?: string,
+        private _nom?: string,
+        private _prenom?: string,
+        private _age?:number,
+        private _numero_tel?: string,
+        private _cin?:number,
+        private _lien_fb?: string,
+        private _formalabeur?: string,
+    ) { }
+
+    get email() { return this._email; }
+    set email(email: string) { this._email = email; }
+
+    get nom() { return this._nom; }
+    set nom(nom: string) { this._nom = nom; }
+
+    get prenom() { return this._prenom; }
+    set prenom(prenom: string) { this._prenom = prenom; }
+
+
+    get age() { return this._age; }
+    set age(age: number) { this._age = age; }
+
+
+    get numero_tel() { return this._numero_tel; }
+    set numero_tel(numero_tel: string) { this._numero_tel = numero_tel; }
+
+    get cin() { return this._cin; }
+    set cin(cin: number) { this._cin = cin; }
+
+    get lien_fb() { return this._lien_fb; }
+    set lien_fb(lien_fb: string) { this._lien_fb = lien_fb; }
+
+    get formalabeur() { return this._formalabeur; }
+    set formalabeur(formalabeur: string) { this._formalabeur = formalabeur; }
+
+    
+}

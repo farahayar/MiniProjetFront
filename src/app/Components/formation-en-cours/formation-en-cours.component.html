@@ -1,0 +1,31 @@
+<div class="container">
+    <h2>Votre Formations</h2>
+    <ul class="responsive-table">
+        <div id="Formations">
+            <div *ngIf="formations.length > 0;then listeformations else noformations"></div>
+            <ng-template #noformations>
+                <div class="alert alert-warning">Aucune formation trouvée </div>
+            </ng-template>
+            <ng-template #listeformations>
+                <div *ngFor="let formation of formations;let j=index">
+                    <li class="table-header">
+                        <div class="col col-1">Image Formation</div>
+                        <div class="col col-2">Titre</div>
+                        <div class="col col-3">Description</div>
+                        <div class="col col-4">Volume Horaire</div>
+                        <div class="col col-4">Date</div>
+                        <div class="col col-4">Prix</div>
+                    </li>
+                    <li class="table-row">
+                        <div class="col col-1" data-label="image"><img class="img-fluid" [src]="formations[j].image_Formation" alt=""></div>
+                        <div class="col col-2" data-label="titre">{{ formation.titre }} </div>
+                        <div class="col col-3" data-label="description">{{ formation.description }}</div>
+                        <div class="col col-4" data-label="volume_horaire">{{ formation.volume_horaire }}  H</div>
+                        <div class="col col-4" data-label="volume_horaire">{{ formation.date }}  </div>
+                        <div class="col col-4" data-label="prix">{{ formation.prix }} DT</div>
+                    </li>
+                </div>
+            </ng-template>
+        </div>
+    </ul>
+</div>
