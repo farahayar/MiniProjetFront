@@ -52,6 +52,11 @@ export class AjoutFormateurComponent implements OnInit {
           Validators.required,
           Validators.min(2)
         ]),
+        pwd: new FormControl("", [
+          Validators.required,
+          Validators.minLength(8)
+
+        ]),
         img: new FormControl("", [
           Validators.required
         ]),
@@ -86,6 +91,9 @@ export class AjoutFormateurComponent implements OnInit {
   get salaire() {
     return this.addFormateurForm.get('salaire');
   }
+  get pwd() {
+    return this.addFormateurForm.get('pwd');
+  }
 
   get img() {
     return this.addFormateurForm.get('img');
@@ -106,19 +114,25 @@ export class AjoutFormateurComponent implements OnInit {
 
     var closeModal1 = function () {
 
-      $('#AjoutFormateur').modal('hide');
+      $('#AjouterFormateur').modal('hide');
 
     }
     const fd = new FormData();
     let data = this.addFormateurForm.value;
-    const f = new Formateur(data.nom, data.prenom, data.age, data.fonction, data.tel, data.email, data.salaire, null, null, data.image);
+    const f = new Formateur(data.nom, data.prenom, data.age, data.fonction, data.tel, data.email, data.salaire, null, data.pwd, data.image);
     fd.append('image', this.selectedFile, this.selectedFile.name);
     fd.append('formateur', JSON.stringify(f));
 
     this._fs.formateurAjout(fd).subscribe((res) => {
-      closeModal1();
+      closeModal1(); 
+      if(this.router.url=="/"){
+       
+        this.router.navigate(['/home']);
+      }
+      else if(this.router.url=="/home"){
+        this.router.navigate(['/']);
+      }
       this.toastr.success("Ajout avec succé!");
-      this.ngOnInit();
     }, (err) => {
       this.toastr.error("Désolé votre ajout n'a pas été effectué!")
     });

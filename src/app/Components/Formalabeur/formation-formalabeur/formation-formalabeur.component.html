@@ -1,0 +1,80 @@
+<div class="modal fade" id="formationFormalabeur" role="dialog" aria-labelledby="admins" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Formations</h4>
+                <button type="button" class="close" (click)="closeModel()">&times;
+                </button>
+            </div>
+            <div class="container">
+                <h2>Vos Formations </h2>
+                <div *ngIf="formationseC.length > 0;then listeformations else noformations"></div>
+                <ng-template #noformations>
+                    <div class="alert alert-warning">Aucune formation n'est ajouté</div>
+                </ng-template>
+                <ng-template #listeformations>
+
+                    <ul class="responsive-table">
+                        <li class="table-header">
+                            <div class="col col-1">Image Formation</div>
+                            <div class="col col-2">titre</div>
+                            <div class="col col-3">Description </div>
+                            <div class="col col-4"> volume_horaire</div>
+                            <div class="col col-5">Prix </div>
+
+                        </li>
+
+                        <li class="table-row" *ngFor="let formation of formationseC;let j=index">
+                            <div class="col col-1" data-label="image">
+                                <img class="img-fluid" [src]="formationseC[j].image_Formation" alt="">
+                            </div>
+                            <div class=" col col-2"> {{ formation.titre }}</div>
+                            <div class=" col col-3"> {{ formation.description }} </div>
+                            <div class="col col-4"> {{ formation.volume_horaire }}JS</div>
+                            <div class="col col-5 "> {{ formation.prix }} DT</div>
+
+
+
+                        </li>
+
+                    </ul>
+                </ng-template>
+            </div>
+
+            <div class="container">
+                <h2>Les Formations Finis</h2>
+                <div *ngIf="formations.length > 0;then listefors else noformations"></div>
+                <ng-template #noformations>
+                    <div class="alert alert-warning">Aucune formation n'est ajouté</div>
+                </ng-template>
+                <ng-template #listefors>
+
+                    <ul class="responsive-table">
+                        <li class="table-header">
+                            <div class="col col-1">Image Formation</div>
+                            <div class="col col-2">titre</div>
+                            <div class="col col-3">Description </div>
+                            <div class="col col-4"> volume_horaire</div>
+                            <div class="col col-5">Prix </div>
+
+                        </li>
+
+                        <li class="table-row" *ngFor="let formation of formations;let j=index">
+                            <div class="col col-1" data-label="image">
+                                <img class="img-fluid" [src]="formations[j].image_Formation" alt="">
+                            </div>
+                            <div class=" col col-2"> {{ formation.titre }}</div>
+                            <div class=" col col-3"> {{ formation.description }} </div>
+                            <div class="col col-4"> {{ formation.volume_horaire }}JS</div>
+                            <div class="col col-5 "> {{ formation.prix }} DT</div>
+
+
+
+                        </li>
+
+                    </ul>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>

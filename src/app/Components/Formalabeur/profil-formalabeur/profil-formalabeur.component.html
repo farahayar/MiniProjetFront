@@ -1,0 +1,96 @@
+<div class="modal fade" id="profileFormalabeur" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog cascading-modal modal-avatar" role="document">
+        <!--Content-->
+        <div class="modal-content">
+
+            <!--Header-->
+            <div class="modal-header">
+                <img [src]="img" alt="avatar" class="rounded-circle img-responsive">
+            </div>
+            <!--Body-->
+            <div class="modal-body   mb-1">
+
+                <h5 class="mt-1 text-center mb-2"> {{ nom }} {{ prenom }} </h5>
+
+                <div class="md-form ml-0 mr-0">
+
+
+
+                    <table>
+                        <tr>
+                            <th>
+                                <h5 class="mt-1 mb-2">Age </h5>
+                            </th>
+                            <th>:</th>
+                            <th>
+                                <h5 class="mt-1 mb-2"> {{ age }} </h5>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <h5 class="mt-1 mb-2">Email </h5>
+                            </th>
+                            <th>:</th>
+                            <th>
+                                <h5 class="mt-1 mb-2">{{ email}}</h5>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <h5 class="mt-1 mb-2">tel </h5>
+                            </th>
+                            <th>:</th>
+                            <th>
+                                <h5 class="mt-1 mb-2"> {{ tel }} </h5>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <h5 class="mt-1 mb-2">Cin</h5>
+                            </th>
+                            <th>:</th>
+                            <th>
+                                <h5 class="mt-1 mb-2"> {{ cin }} </h5>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <h5 class="mt-1 mb-2">Lienfb</h5>
+                            </th>
+                            <th>:</th>
+                            <th>
+                                <h5 class="mt-1 mb-2"> {{ lienfb }} </h5>
+                            </th>
+                        </tr>
+
+                    </table>
+
+
+                    <!-- <h5 class="mt-1 mb-2" >Age : {{ age }} </h5>
+
+                    <h5 class="mt-1 mb-2" >Email : {{ email }} </h5>
+
+                    <h5 class="mt-1 mb-2" >Tel : {{ tel }} </h5>
+                    <h5 class="mt-1 mb-2" >Cin : {{ cin }} </h5>
+                    <h5 class="mt-1 mb-2" >Lienfb : {{ lienfb }} </h5> -->
+
+                </div>
+
+                <div class="text-center mt-4">
+                    <button class="btn btn-orange mt-1" data-toggle="modal"
+                        data-target="#ModFormalabeur" (click)="closeModel()">Modifier <i class="fas fa-sign-in ml-1"></i></button>
+                    <!-- <button class="btn btn-orange mt-1" 
+                        (click)="supprimerFormateur(email)">Désactiver<i class="fas fa-sign-in ml-1"></i></button> -->
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- Modifier Profil formalabeur -->
+<app-modifier-formalabeur></app-modifier-formalabeur>

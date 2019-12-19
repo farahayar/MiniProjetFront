@@ -62,16 +62,28 @@
                           <th>
                             <h5 class="mt-1 mb-2">Description </h5>
                           </th>
+                          <th>:</th>
                           <th>
-                            <h5 class="mt-1 mb-2">: {{ description }} </h5>
+                            <h5 class="mt-1 mb-2"> {{ description }} </h5>
+                          </th>
+                        </tr>
+                        <tr>
+                          <th>
+                            <h5 class="mt-1 mb-2">date </h5>
+                          </th>
+                          <th>:</th>
+                          <th>
+                            <h5 class="mt-1 mb-2">{{ date }}</h5>
+                            <!-- | date : "shortDate" -->
                           </th>
                         </tr>
                         <tr>
                           <th>
                             <h5 class="mt-1 mb-2">Prix </h5>
                           </th>
+                          <th>:</th>
                           <th>
-                            <h5 class="mt-1 mb-2">: {{ prix }} </h5>
+                            <h5 class="mt-1 mb-2"> {{ prix }} </h5>
                           </th>
                           <th><img [src]="imgFormateur" alt="avatar" class="rounded-circle img-responsive" width="100"
                               height="100"></th>
@@ -80,8 +92,9 @@
                           <th>
                             <h5 class="mt-1 mb-2">volume horaire </h5>
                           </th>
+                          <th>:</th>
                           <th>
-                            <h5 class="mt-1 mb-2">: {{ volume_horaire }} </h5>
+                            <h5 class="mt-1 mb-2"> {{ volume_horaire }} </h5>
                           </th>
                         </tr>
 
@@ -89,18 +102,23 @@
                     </div>
 
                     <div class="text-center mt-4">
-                      <button class="btn btn-orange mt-1" *ngIf="isLoggedAdmin">Modifier <i
+                      <button class="btn btn-orange mt-1" *ngIf="isLoggedAdmin" data-toggle="modal"
+                        data-target="#modifFormation" (click)="ModifierFormation(id)">Modifier <i
                           class="fas fa-sign-in ml-1"></i></button>
                       <button class="btn btn-orange mt-1" *ngIf="isLoggedAdmin"
                         (click)="supprimerFormation(titre)">Supprimer<i class="fas fa-sign-in ml-1"></i></button>
                       <!-- <button class="btn btn-orange mt-1" *ngIf="isLoggedFormateur"
                         (click)="ConslterFormationformalabeur(formation)">Consulter<i
                           class="fas fa-sign-in ml-1"></i></button> -->
-                      <button class="btn btn-orange mt-1" *ngIf="!isLoggedAdmin && !isLoggedFormateur"
+                      <button class="btn btn-orange mt-1" *ngIf="!isLoggeduser && !isLoggedAdmin && !isLoggedFormateur "
                         data-toggle="modal" data-target="#formInsc" (click)="closemodal()">Inscription<i
                           class="fas fa-sign-in ml-1"></i></button>
-                      <button class="btn btn-orange mt-1" *ngIf="isLoggedFormateur"
-                      data-toggle="modal" data-target="#listeInscriptions" (click)="closecons()">Liste des Inscriptions<i
+
+                      <button class="btn btn-orange mt-1" *ngIf="!isLoggedAdmin && !isLoggedFormateur && isLoggeduser"
+                        (click)="inscriptionFormationFormalabeur()">Inscription<i class="fas fa-sign-in ml-1"></i></button>
+
+                      <button class="btn btn-orange mt-1" *ngIf="isLoggedFormateur" data-toggle="modal"
+                        data-target="#listeInscriptions" (click)="closecons()">Liste des Inscriptions<i
                           class="fas fa-sign-in ml-1"></i></button>
                     </div>
                   </div>
@@ -113,6 +131,8 @@
     </section>
   </ng-template>
 </div>
+<!-- Modifier -->
+<app-modifier-formation></app-modifier-formation>
 
 <!-- Inscription -->
 
@@ -120,7 +140,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">S'inscrir</h4>
+        <h4 class="modal-title w-100 font-weight-bold">S'inscrire</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -217,7 +237,7 @@
         <br>
 
         <div class="modal-footer d-flex justify-content-center">
-          <input class="btn btn-deep-orange" type="submit" value="S'inscrir" [disabled]="inscriptionForm.invalid" />
+          <input class="btn btn-deep-orange" type="submit" value="S'inscrire" [disabled]="inscriptionForm.invalid" />
         </div>
       </form>
     </div>
@@ -237,35 +257,36 @@
         <h5 class="mt-1 text-center mb-2"> {{ titre}} </h5>
 
         <div class="md-form ml-0 mr-0">
-            <div *ngIf="users.length > 0;then userr else nouser"></div>
-            <ng-template #nouser>
-                <div class="alert alert-warning">Pas de participants</div>
-            </ng-template>
-        
-            <ng-template #userr>
-        
-                <table class="table">
-                    <thead>
-                        <th>Num</th>
-                        <th>Nom</th>
-                        <th>Prenom</th>
-                        <th>Age</th>
-                        <th></th>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let user of users; let i=index">
-                            <td>{{ i+1 }}</td>
-                            <td>{{ user.nom}}</td>
-                            <td>{{ user.prenom}}</td>
-                            <td>{{ user.age}}</td>
-                            <td><img class="img-fluid" [src]="users[i].img" alt=""></td>
-                        </tr>
-        
-                    </tbody>
-        
-                </table>
-        
-            </ng-template>
+          <div *ngIf="users.length > 0;then userr else nouser"></div>
+          <ng-template #nouser>
+            <div class="alert alert-warning">Pas de participants</div>
+          </ng-template>
+
+          <ng-template #userr>
+
+            <table class="table">
+              <thead>
+                <th>Num</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Age</th>
+                <th></th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let user of users; let i=index">
+                  <td>{{ i+1 }}</td>
+                  <td>{{ user.nom}}</td>
+                  <td>{{ user.prenom}}</td>
+                  <td>{{ user.age}}</td>
+                  <td><img class="img-fluid"  alt="avatar" class="rounded-circle img-responsive" width="100"
+                    height="100" [src]="users[i].img" alt=""></td>
+                </tr>
+
+              </tbody>
+
+            </table>
+
+          </ng-template>
         </div>
       </div>
     </div>

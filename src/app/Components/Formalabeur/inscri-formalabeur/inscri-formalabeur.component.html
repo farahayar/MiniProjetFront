@@ -116,9 +116,9 @@
                     <div class="md-form">
                         <div class="file-field big-2">
                             <div class="btn btn-rounded peach-gradient btn-lg float-left">
-                                <span>Choose file</span>
-                                <input type="file" name="img" formControlName="img" accept="image/*"
-                                    (change)=" onFileSelected($event)">
+                                <span>Choisir une image</span>
+                                <input type="file" class="custom-file-input" id="customFile" name="img"
+                                    formControlName="img" accept="image/*" (change)=" onFileSelected($event)">
                             </div>
                             <div class="alert alert-warning" *ngIf="img.touched && img.invalid">
                                 <div *ngIf=img.errors.required> le champ img est obligatoire</div>
@@ -126,12 +126,13 @@
                         </div>
                     </div>
 
-                </div>
-                <br>
 
-                <div class="modal-footer d-flex justify-content-center">
-                    <input class="btn btn-deep-orange" type="submit" value="Ajouter"
-                        [disabled]="addFormalabeurForm.invalid" />
+                    <br>
+
+                    <div class="modal-footer d-flex justify-content-center">
+                        <input class="btn btn-deep-orange" type="submit" value="S'inscrire"
+                            [disabled]="addFormalabeurForm.invalid" />
+                    </div>
                 </div>
             </form>
         </div>

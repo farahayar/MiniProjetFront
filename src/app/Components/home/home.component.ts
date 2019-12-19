@@ -10,10 +10,16 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-  isLogged:boolean;
-  isLoggedAdmin:boolean;
+  isLogged: boolean;
+  isLoggedAdmin: boolean;
+  isLoggedFormateur:boolean;
+  isLoggedSuperAdmin:boolean;
   title = 'projetdemo';
-  constructor(private t: Title,private _fu:FormateurService,private router: Router,private toastr:ToastrService) {
+  typewriter_text: string = "Your way to Exellence !..";
+  typewriter_display: string = "";
+
+
+  constructor(private t: Title, private _fu: FormateurService, private router: Router, private toastr: ToastrService,private _fs:FormateurService) {
     this.t.setTitle("FormaLab");
     // Collapse Navbar
     var navbarCollapse = function () {
@@ -31,18 +37,54 @@ export class HomeComponent {
     $(window).scroll(navbarCollapse);
   }
 
-  ngOnInit(): void {
-    this.isLogged=this._fu.isLoggedIn();
-    this.isLoggedAdmin=this._fu.isLoggedAdmin();
+  typingCallback(that) {
+
+    let total_length = that.typewriter_text.length;
+    let current_length = that.typewriter_display.length;
+    if (current_length < total_length) {
+      that.typewriter_display += that.typewriter_text[current_length];
+      setTimeout(that.typingCallback, 100, that);
+    }  
+  }
+  /*
+  typingCallback(that) {
+  let total_length = that.typewriter_text.length;
+  let current_length = that.typewriter_display.length;
+  if (current_length < total_length) {
+    that.typewriter_display += that.typewriter_text[current_length];
+  } else {
+    that.typewriter_display = "";
+  }
+  setTimeout(that.typingCallback, 200, that);
+}
+*/
+
+
+  ngOnInit() {
+    console.log("typewriter_display"+this.typewriter_display);
+if(localStorage.getItem("token"))
+this.typewriter_text="Welcome "+localStorage.getItem("nom")+" !..";
+    this.typingCallback(this);
+
+    this.isLogged = this._fu.isLoggedIn();
+    this.isLoggedAdmin = this._fu.isLoggedAdmin();
+    this.isLoggedFormateur=this._fs.isLoggedFormateur();
+  this.isLoggedSuperAdmin=this._fs.isLoggedSuperAdmin();
+
   }
 
   deco() {
     this.ngOnInit();
     localStorage.removeItem('token');
     this.isLogged = false;
-    
-    this.router.navigate(['']);
-this.toastr.success("Au revoir!")
+    if (this.router.url == "/") {
+
+      this.router.navigate(['/home']);
+    }
+    else  {
+      this.router.navigate(['/']);
+    }
+    this.toastr.success("Au revoir!")
 
   }
 }

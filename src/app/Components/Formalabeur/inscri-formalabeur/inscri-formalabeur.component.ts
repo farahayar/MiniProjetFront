@@ -124,6 +124,13 @@ export class InscriFormalabeurComponent implements OnInit {
     this._fs.formalabeurAjout(fd).subscribe((res) => {
       closeModal3();
       this.toastr.success("Ajout avec succé!");
+      if (this.router.url == "/") {
+
+        this.router.navigate(['/home']);
+      }
+      else if (this.router.url == "/home") {
+        this.router.navigate(['/']);
+      }
       this.router.navigate(['/home']);
       this.router.navigate(['']);
     }, (err) => {

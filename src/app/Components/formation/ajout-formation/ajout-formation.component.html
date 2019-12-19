@@ -1,10 +1,11 @@
 <section class="page-section bg-dark text-white" id="AjoutFormation">
     <div class="container text-center">
-        <a class="btn btn-light btn-xl js-scroll-trigger" data-toggle="modal" data-target="#modalRegisterForm1"
-            style="color: black;">Ajouter Formation</a>
+        <a class="btn btn-light btn-xl js-scroll-trigger" data-toggle="modal" data-target="#AjouterFormation"
+            style="color:black;">Ajouter Formation
+        </a>
     </div>
 </section>
-<div class="modal fade" id="modalRegisterForm1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+<div class="modal fade" id="AjouterFormation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -58,12 +59,38 @@
                             formControlName="prix">
                         <div class="alert alert-warning" *ngIf="prix.touched && prix.invalid">
                             <div *ngIf=prix.errors.required> le champ prix est obligatoire</div>
-                            
+
+                        </div>
+                        <label data-error="wrong" data-success="right" for="orangeForm-name"></label>
+                    </div>
+                    <div class="md-form mb-5">
+                        <i class="far fa-calendar-alt prefix grey-text"></i>
+                        <input type="text" class="form-control validate" placeholder="Date" name="date"
+                            formControlName="date">
+                        <div class="alert alert-warning" *ngIf="date.touched && date.invalid">
+                            <div *ngIf=date.errors.required> le champ date est obligatoire</div>
+
                         </div>
                         <label data-error="wrong" data-success="right" for="orangeForm-name"></label>
                     </div>
 
                     <div class="md-form mb-5">
+                        <i class="fas fa-chalkboard-teacher prefix grey-text"></i>
+                        <br>
+                        <label >Formateur :</label><br>
+                        <select class="browser-default custom-select" ng-model="sel3"  name="idformateur" formControlName="idformateur">
+                            <option log-dom-creation="sans" *ngFor="let item of formateurs" value="{{item._id}}"
+                               >
+                                {{item.nom}} {{item.prenom}}</option>
+                        </select>
+                        <div class="alert alert-warning" *ngIf="idformateur.touched && idformateur.invalid">
+                            <div *ngIf=idformateur.errors.required> le champ idformateur est obligatoire</div>
+                            <div *ngIf=idformateur.errors.minlength> min 2!</div>
+                        </div>
+                    </div>
+
+
+                    <!-- <div class="md-form mb-5">
                         <i class="fas fa-user-tie prefix grey-text"></i>
                         <input type="text" class="form-control validate" placeholder="Formateur" name="idformateur"
                             formControlName="idformateur">
@@ -72,15 +99,15 @@
                             <div *ngIf=idformateur.errors.minlength> min 2!</div>
                         </div>
                         <label data-error="wrong" data-success="right" for="orangeForm-name"></label>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="md-form">
                     <div class="file-field big-2">
                         <div class="btn btn-rounded peach-gradient btn-lg float-left">
-                            <span>Choose file</span>
-                            <input type="file" name="img" formControlName="img" accept="image/*"
-                                (change)=" onFileSelected($event)">
+                            <span>Choisir une image</span>
+                            <input type="file" class="custom-file-input" id="customFile" name="img"
+                                formControlName="img" accept="image/*" (change)=" onFileSelected($event)">
                         </div>
                         <div class="alert alert-warning" *ngIf="img.touched && img.invalid">
                             <div *ngIf=img.errors.required> le champ img est obligatoire</div>

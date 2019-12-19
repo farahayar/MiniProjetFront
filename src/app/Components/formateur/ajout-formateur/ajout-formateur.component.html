@@ -1,10 +1,10 @@
 <section class="page-section bg-dark text-white" id="AjoutFormateur">
     <div class="container text-center">
-        <a class="btn btn-light btn-xl js-scroll-trigger" data-toggle="modal" data-target="#modalRegisterForm"
+        <a class="btn btn-light btn-xl js-scroll-trigger" data-toggle="modal" data-target="#AjouterFormateur"
             style="color: black;">Ajouter Formateur</a>
     </div>
 </section>
-<div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+<div class="modal fade" id="AjouterFormateur" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -105,13 +105,24 @@
                         <label data-error="wrong" data-success="right" for="orangeForm-name"></label>
                     </div>
 
+                    <div class="md-form mb-5">
+                        <i class="fas fa-lock prefix grey-text"></i>
+                        <input type="password" class="form-control validate" placeholder="Password" name="pwd"
+                            formControlName="pwd">
+                        <div class="alert alert-warning" *ngIf="pwd.touched && pwd.invalid">
+                            <div *ngIf=pwd.errors.required> le champ pwd est obligatoire</div>
+                            <div *ngIf=pwd.errors.minlength> min 4!</div>
+                        </div>
+                        <label data-error="wrong" data-success="right" for="orangeForm-name"></label>
+                    </div>
+
 
                     <div class="md-form">
                         <div class="file-field big-2">
                             <div class="btn btn-rounded peach-gradient btn-lg float-left">
-                                <span>Choose file</span>
-                                <input type="file" name="img" formControlName="img" accept="image/*"
-                                    (change)=" onFileSelected($event)">
+                                <span>Choisir une image</span>
+                                <input type="file" class="custom-file-input" id="customFile" name="img"
+                                    formControlName="img" accept="image/*" (change)=" onFileSelected($event)">
                             </div>
                             <div class="alert alert-warning" *ngIf="img.touched && img.invalid">
                                 <div *ngIf=img.errors.required> le champ img est obligatoire</div>
@@ -119,12 +130,13 @@
                         </div>
                     </div>
 
-                </div>
-                <br>
 
-                <div class="modal-footer d-flex justify-content-center">
-                    <input class="btn btn-deep-orange" type="submit" value="Ajouter"
-                        [disabled]="addFormateurForm.invalid" />
+                    <br>
+
+                    <div class="modal-footer d-flex justify-content-center">
+                        <input class="btn btn-deep-orange" type="submit" value="Ajouter"
+                            [disabled]="addFormateurForm.invalid" />
+                    </div>
                 </div>
             </form>
         </div>

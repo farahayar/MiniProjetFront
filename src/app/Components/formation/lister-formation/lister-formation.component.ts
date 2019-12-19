@@ -22,12 +22,14 @@ export class ListerFormationComponent implements OnInit {
   prix: String;
   idformateur: String;
   img: String;
+  date: String;
   imgFormateur: String;
   inscriptionForm: FormGroup;
   id: number;
   formations = [];
   users = [];
-  constructor(private t: Title, private fb: FormBuilder, private toastr: ToastrService, private _fu: FormationService, private router: Router, private _us: UserService) {
+  constructor(private t: Title, private fb: FormBuilder, private toastr: ToastrService,
+    private _fu: FormationService, private router: Router, private _us: UserService) {
     this.t.setTitle("FormaLab");
 
 
@@ -105,13 +107,24 @@ export class ListerFormationComponent implements OnInit {
     }, (err) => {
       this.toastr.error("Aucune formation!")
     });
-    
+
+    this.isLoggeduser = this._us.isLoggedIn();
     this.isLoggedAdmin = this._fu.isLoggedAdmin();
-    this.isLoggedFormateur=this._fu.isLoggedFormateur();
+    this.isLoggedFormateur = this._fu.isLoggedFormateur();
+    
+    if (this.isLoggedFormateur) {
+      this._fu.formationListerFormateur(localStorage.getItem("token")).subscribe((res) => {
+        console.log(res);
+
+        this.formations = res;
+      }, (err) => {
+        this.toastr.error("Aucune formation!")
+      });
+    }
+
   }
   ConslterFormation(formation) {
     console.log("id=" + formation.idformateur);
-    
 
     this._fu.getImageFormat(formation.idformateur).subscribe((res) => {
       this.imgFormateur = res.image_formateur;
@@ -123,6 +136,7 @@ export class ListerFormationComponent implements OnInit {
     this.idformateur = formation.idformateur;
     this.img = formation.image_Formation;
     this.id = formation._id;
+    this.date = formation.date;
   }
 
   ConsulterInscription() {
@@ -137,9 +151,8 @@ export class ListerFormationComponent implements OnInit {
 
     }
   }
-  
-  closemodal()
-  {
+
+  closemodal() {
     var closeModal2 = function () {
 
       $('#formationcons').modal('hide');
@@ -158,6 +171,7 @@ export class ListerFormationComponent implements OnInit {
     console.log(titre);
     this._fu.formationSupprimer(titre).subscribe((res) => {
       closeModal2();
+      this.ngOnInit();
       this.toastr.success("Suppression avec succée!");
       this.router.navigate(['/home']);
       this.router.navigate(['']);
@@ -176,7 +190,7 @@ export class ListerFormationComponent implements OnInit {
     const fd = new FormData();
     let data = this.inscriptionForm.value;
     const user = new User(data.nom, data.prenom, data.age, data.tel, data.email, data.cin, data.lienfb);
-console.log("user "+user.cin);
+    console.log("user " + user.cin);
 
     this._us.InscriptionFormation(user, this.id).subscribe((res) => {
       closeModal2();
@@ -187,18 +201,47 @@ console.log("user "+user.cin);
     });
 
   }
-  
-  closecons(){
+
+  closecons() {
     var closeModal4 = function () {
 
       $('#formationcons').modal('hide');
 
     }
-    let token=localStorage.getItem("token");
+    let token = localStorage.getItem("token");
     closeModal4();
-    
-    this._us.getAllUsers().subscribe((res) => { this.users = res; }, (err) => { });
 
+    this._us.getAllUsers(this.titre).subscribe((res) => { this.users = res; }, (err) => { });
+
+  }
+
+  ModifierFormation(idf) {
+    var closeModal2 = function () {
+
+      $('#formationcons').modal('hide');
+
+    }
+    localStorage.setItem("idf", idf);
+    closeModal2();
+
+
+
+  }
+
+  inscriptionFormationFormalabeur() {
+    var closeModal2 = function () {
+
+      $('#formationcons').modal('hide');
+
+    }
+    
+    let token = localStorage.getItem("token");
+    this._us.InscriptionFormation({ token }, this.id).subscribe((res) => {
+      closeModal2();
+      this.toastr.success("Votre inscription a été effectuée");
+    }, (err) => {
+      this.toastr.error("Erreur :" + err);
+    })
   }
 }
 

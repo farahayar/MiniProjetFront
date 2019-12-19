@@ -68,8 +68,13 @@ export class ConnexionComponent implements OnInit {
     this._fs.formateurConnection(f).subscribe((res) => {
 
       closeModal();
-      this.route.navigate(['/home']);
-      //this.route.navigate(['']);
+      if(this.route.url=="/"){
+       
+        this.route.navigate(['/home']);
+      }
+      else {
+        this.route.navigate(['/']);
+      }
       this.toastr.success("connected");
       this.ngOnInit();
       localStorage.setItem('token', res.token);

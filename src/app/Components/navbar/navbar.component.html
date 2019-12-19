@@ -1,28 +1,51 @@
 <nav class="navbar navbar-scrolled navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
-    <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top">FormaLab</a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto my-2 my-lg-0">
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#Inscription">S'inscrir</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#services">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#Formateurs">Formateurs</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#Formations">Formations</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
-          </li>
-          
-        </ul>
-      </div>
+  <div class="container">
+    <a class="navbar-brand js-scroll-trigger" href="#page-top">FormaLab</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+      data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto my-2 my-lg-0">
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" *ngIf="!isLoggedAdmin && !isLoggedFormateur && isLogged"
+            data-toggle="modal" data-target="#profileFormalabeur"><i class="fa fa-user-circle" aria-hidden="true"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" *ngIf="isLoggedAdmin || isLoggedFormateur && isLogged"
+            data-toggle="modal" data-target="#profileFormateur"><i class="fa fa-user-circle" aria-hidden="true"></i>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" *ngIf="!isLoggedAdmin && !isLoggedFormateur && !isLogged"
+            href="#Inscription">S'inscrire</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#services">Services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#Formateurs">Formateurs</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#Formations">Formations</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" *ngIf="isLoggedSuperAdmin" data-toggle="modal"
+            data-target="#admins">Admins</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" *ngIf="!isLoggedAdmin && !isLoggedFormateur && isLogged"
+            data-toggle="modal" data-target="#formationFormalabeur">Mes Formations</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+        </li>
+
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>

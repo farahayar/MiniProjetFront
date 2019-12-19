@@ -1,1 +1,106 @@
-<p>modifier-formation works!</p>
+<div class="modal fade" id="modifFormation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Modifier Formation</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form [formGroup]="modFormationForm" (ngSubmit)="modFormation()">
+
+                <div class="modal-body mx-3">
+                    <div class="md-form mb-5">
+                        <i class="fas fa-heading prefix grey-text"></i>
+
+                        <input type="text" class="form-control validate" placeholder="titre" name="titre"
+                            formControlName="titre" [value]="titrem">
+                        <div class="alert alert-warning" *ngIf="titre.touched && titre.invalid && titre.empty">
+                            <div *ngIf=titre.errors.required> le champ titre est obligatoire</div>
+                            <div *ngIf=titre.errors.minlength> min 2!</div>
+                        </div>
+                        <label data-error="wrong" data-success="right" for="orangeForm-name"></label>
+                    </div>
+
+                    <div class="md-form mb-5">
+                        <i class="fas fa-box-open prefix grey-text"></i>
+
+                        <input type="text" class="form-control validate" placeholder="description" name="description"
+                            formControlName="description" [value]="descriptionm">
+                        <div class="alert alert-warning" *ngIf="description.touched && description.invalid">
+                            <div *ngIf=description.errors.required> le champ description est obligatoire</div>
+                            <div *ngIf=description.errors.minlength> min 2!</div>
+                        </div>
+                        <label data-error="wrong" data-success="right" for="orangeForm-name"></label>
+                    </div>
+
+                    <div class="md-form mb-5">
+                        <i class="fas fa-hourglass-start prefix grey-text"></i>
+                        <input type="text" class="form-control validate" placeholder="volume_horaire"
+                            name="volume_horaire" formControlName="volume_horaire" [value]="volume_horairem">
+                        <div class="alert alert-warning" *ngIf="volume_horaire.touched && volume_horaire.invalid">
+                            <div *ngIf=volume_horaire.errors.required> le champ volume_horaire est obligatoire</div>
+                            <div *ngIf=prix.errors.required> le champ prix est obligatoire</div>
+                        </div>
+                        <label data-error="wrong" data-success="right" for="orangeForm-name"></label>
+                    </div>
+
+                    <div class="md-form mb-5">
+                        <i class="fas fa-hand-holding-usd prefix grey-text"></i>
+                        <input type="text" class="form-control validate" placeholder="Prix" name="prix"
+                            formControlName="prix" [value]="prixm">
+                        <div class="alert alert-warning" *ngIf="prix.touched && prix.invalid">
+                            <div *ngIf=prix.errors.required> le champ prix est obligatoire</div>
+
+                        </div>
+                        <label data-error="wrong" data-success="right" for="orangeForm-name"></label>
+                    </div>
+                    <div class="md-form mb-5">
+                        <i class="far fa-calendar-alt prefix grey-text"></i>
+                        <input type="text" class="form-control validate" placeholder="Date" name="date"
+                            formControlName="date" [value]="datem">
+                        <div class="alert alert-warning" *ngIf="date.touched && date.invalid">
+                            <div *ngIf=date.errors.required> le champ date est obligatoire</div>
+
+                        </div>
+                        <label data-error="wrong" data-success="right" for="orangeForm-name"></label>
+                    </div>
+
+                    <div class="md-form mb-5">
+                        <i class="fas fa-chalkboard-teacher prefix grey-text"></i>
+                        <br>
+                        <label>Formateur :</label><br>
+                        <select class="browser-default custom-select" ng-model="sel3" name="idformateur"
+                            formControlName="idformateur" [value]="idformateurm">
+                            <option log-dom-creation="sans" *ngFor="let item of formateurs" value="{{item._id}}">
+                                {{item.nom}} {{item.prenom}}</option>
+                        </select>
+                        <div class="alert alert-warning" *ngIf="idformateur.touched && idformateur.invalid">
+                            <div *ngIf=idformateur.errors.required> le champ idformateur est obligatoire</div>
+                            <div *ngIf=idformateur.errors.minlength> min 2!</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md-form">
+                    <div class="file-field big-2">
+                        <div class="btn btn-rounded peach-gradient btn-lg float-left">
+                            <span>Choisir une image</span>
+                            <input type="file" class="custom-file-input" id="customFile" name="img"
+                                formControlName="img" accept="image/*" (change)=" onFileSelected($event)">
+                        </div>
+                       
+                    </div>
+                </div>
+               
+                <br>
+
+                <div class="modal-footer d-flex justify-content-center">
+                    <input class="btn btn-deep-orange" type="submit" value="Modifier"
+                        [disabled]="modFormationForm.invalid" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

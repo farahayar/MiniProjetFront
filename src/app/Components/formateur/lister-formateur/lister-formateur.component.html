@@ -21,7 +21,7 @@
       <div class="container-fluid p-0">
         <div class="row no-gutters">
           <div class="col-lg-3 col-sm-6" *ngFor="let formateur of formateurs;let j=index">
-            <a class="portfolio-box" href="" data-toggle="modal" data-target="#modalLoginAvatar" (click)="ConslterFormateur(formateur)">
+            <a class="portfolio-box" href="" data-toggle="modal" data-target="#conformateur" (click)="ConslterFormateur(formateur)">
               <img class="img-fluid" [src]="formateurs[j].image_formateur" alt="">
               <div class="portfolio-box-caption">
                 <div class="project-category text-white-50">
@@ -32,8 +32,8 @@
                 </div>
               </div>
             </a>
-            <!--Modal: Login with Avatar Form-->
-            <div class="modal fade" id="modalLoginAvatar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            <!--Modal:Consulter formateur-->
+            <div class="modal fade" id="conformateur" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
               aria-hidden="true">
               <div class="modal-dialog cascading-modal modal-avatar" role="document">
                 <!--Content-->
@@ -51,20 +51,20 @@
 
                     <div class="md-form ml-0 mr-0">
                       
-                      <h5 class="mt-1 mb-2">Age : {{ age }} </h5>
+                      <h5 class="mt-1 mb-2" *ngIf="isLoggedAdmin">Age : {{ age }} </h5>
                   
-                      <h5 class="mt-1 mb-2">Email :  {{ email }} </h5>
+                      <h5 class="mt-1 mb-2" *ngIf="isLoggedAdmin">Email :  {{ email }} </h5>
            
-                      <h5 class="mt-1 mb-2" >Tel : {{ tel }} </h5>
+                      <h5 class="mt-1 mb-2" *ngIf="isLoggedAdmin">Tel : {{ tel }} </h5>
                 
                       <h5 class="mt-1 mb-2">Fonction : {{ fonction }} </h5>
                    
-                      <h5 class="mt-1 mb-2">Salaire : {{ salaire }} </h5>
+                      <h5 class="mt-1 mb-2" *ngIf="isLoggedAdmin">Salaire : {{ salaire }} </h5>
                     </div>
 
                     <div class="text-center mt-4">
-                      <button class="btn btn-orange mt-1"  *ngIf="isLoggedAdmin">Modif <i class="fas fa-sign-in ml-1"></i></button>
-                      <button class="btn btn-orange mt-1"  *ngIf="isLoggedAdmin" (click)="supprimerFormateur(email)">Sup<i class="fas fa-sign-in ml-1"></i></button>
+                      <button class="btn btn-orange mt-1"  *ngIf="isLoggedAdmin" (click)="ModifierFormateur(id)" data-toggle="modal" data-target="#ModFormateur">Modifier <i class="fas fa-sign-in ml-1"></i></button>
+                      <button class="btn btn-orange mt-1"  *ngIf="isLoggedAdmin" (click)="supprimerFormateur(email)">Supprimer<i class="fas fa-sign-in ml-1"></i></button>
                      
                     </div>
 
@@ -84,4 +84,6 @@
   </ng-template>
 </div>
 <!-- <app-consulter-formateur></app-consulter-formateur> -->
+<app-modifier-formateur></app-modifier-formateur>
+
 <app-ajout-formateur *ngIf="isLoggedAdmin"></app-ajout-formateur>

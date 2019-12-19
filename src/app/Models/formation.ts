@@ -1,14 +1,17 @@
 export class Formation {
+    
     constructor(
         private _titre?: String,
         private _description?: String, 
         private _volume_horaire?: number ,
         private _prix?: String ,
         private _idformateur?: String,
-        private _img?: String
+        private _img?: String,
+        private _date?: String
 
         ){}
 
+        
     public get titre(): String {
         return this._titre;
     }
@@ -45,6 +48,12 @@ export class Formation {
     }
     public set description(description: String) {
         this._description = description;
+    }
+    public get date(): String {
+        return this._date;
+    }
+    public set date(date: String) {
+        this._date = date;
     }
    
 }

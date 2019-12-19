@@ -1,0 +1,150 @@
+<div class="modal fade" id="ModFormalabeur" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Modifier Profile</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form [formGroup]="ModFormalabeurForm" (ngSubmit)="modFormalabeur()">
+
+                <div class="modal-body mx-3">
+                    <div class="md-form mb-5">
+                        <i class="fas fa-user prefix grey-text"></i>
+                        <input type="text" class="form-control validate" placeholder="nom" name="nom"
+                            formControlName="nom"  [value]="nomm">
+                        <div class="alert alert-warning" *ngIf="nom.touched && nom.invalid">
+                            <div *ngIf=nom.errors.required> le champ nom est obligatoire</div>
+                            <div *ngIf=nom.errors.minlength> min 3!</div>
+                        </div>
+                        <label data-error="wrong" data-success="right" for="orangeForm-name"></label>
+                    </div>
+
+                    <div class="md-form mb-5">
+                        <i class="fas fa-user prefix grey-text"></i>
+                        <input type="text" class="form-control validate" placeholder="Prenom" name="prenom"
+                            formControlName="prenom"  [value]="prenomm">
+                        <div class="alert alert-warning" *ngIf="prenom.touched && prenom.invalid">
+                            <div *ngIf=prenom.errors.required> le champ prenom est obligatoire</div>
+                            <div *ngIf=prenom.errors.minlength> min 3!</div>
+                        </div>
+                        <label data-error="wrong" data-success="right" for="orangeForm-name"></label>
+                    </div>
+
+                    <div class="md-form mb-5">
+                        <i class="fas fa-baby-carriage prefix grey-text"></i>
+                        <input type="text" class="form-control validate" placeholder="Age" name="age"
+                            formControlName="age"  [value]="agem">
+                        <div class="alert alert-warning" *ngIf="age.touched && age.invalid">
+                            <div *ngIf=age.errors.required> le champ age est obligatoire</div>
+                            <div *ngIf=age.errors.minlength> min 2!</div>
+                        </div>
+                        <label data-error="wrong" data-success="right" for="orangeForm-name"></label>
+                    </div>
+
+                    <div class="md-form mb-5">
+                        <i class="fas fa-fingerprint prefix grey-text"></i>
+                        <input type="text" class="form-control validate" placeholder="CIN" name="cin"
+                            formControlName="cin"  [value]="cinm">
+                        <div class="alert alert-warning" *ngIf="cin.touched && cin.invalid">
+                            <div *ngIf=cin.errors.required> le champ cin est obligatoire</div>
+                            <div *ngIf=cin.errors.minlength> min 7!</div>
+                        </div>
+                        <label data-error="wrong" data-success="right" for="orangeForm-name"></label>
+                    </div>
+
+                    <div class="md-form mb-5">
+                        <i class="fas fa-envelope prefix grey-text"></i>
+                        <input type="email" class="form-control validate" placeholder="Email" name="email"
+                            formControlName="email"  [value]="emailm">
+                        <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
+                            <div *ngIf="email.errors.required">
+                                l'email est obligatoire !
+                            </div>
+                            <div *ngIf="email.errors.email">
+                                le champ email est invalid !
+                            </div>
+                        </div>
+                        <label data-error="wrong" data-success="right" for="orangeForm-email"></label>
+                    </div>
+
+                    <div class="md-form mb-5">
+                        <i class="fas fa-phone prefix grey-text"></i>
+                        <input type="text" class="form-control validate" placeholder="Tel" name="tel"
+                            formControlName="tel"  [value]="telm">
+                        <div class="alert alert-danger" *ngIf="tel.touched && tel.invalid">
+                            <div *ngIf="tel.errors.required">
+                                le champ tel est obligatoire !
+                            </div>
+                            <div *ngIf="tel.errors.pattern">
+                                tel invalid!
+                            </div>
+                            <div *ngIf="tel.errors.minlength">
+                                min 8 chif !
+                            </div>
+                        </div>
+                        <label data-error="wrong" data-success="right" for="orangeForm-name"></label>
+                    </div>
+
+                    <div class="md-form mb-5">
+                        <i class="fab fa-facebook-f prefix grey-text"></i>
+                        <input type="text" class="form-control validate" placeholder="Lien FB" name="lienfb"
+                            formControlName="lienfb"  [value]="lienfbm">
+                        <div class="alert alert-warning" *ngIf="lienfb.touched && lienfb.invalid">
+                            <div *ngIf=pwd.errors.required> le champ Lien FB est obligatoire</div>
+
+                        </div>
+                        <label data-error="wrong" data-success="right" for="orangeForm-name"></label>
+                    </div>
+
+                    <div class="md-form mb-5">
+                        <i class="fas fa-lock prefix grey-text"></i>
+                        <input type="password" class="form-control validate" placeholder="Old Password " name="pwd"
+                            formControlName="pwd">
+                        <div class="alert alert-warning" *ngIf="pwd.touched && pwd.invalid">
+                            <div *ngIf=pwd.errors.required> le champ pwd est obligatoire</div>
+                            <div *ngIf=pwd.errors.minlength> min 4!</div>
+                        </div>
+                        <label data-error="wrong" data-success="right" for="orangeForm-name"></label>
+                    </div>
+
+                    <div class="md-form mb-5">
+                        <i class="fas fa-lock prefix grey-text"></i>
+                        <input type="password" class="form-control validate" placeholder="New Password" name="pwd2"
+                            formControlName="pwd2">
+                        <div class="alert alert-warning" *ngIf="pwd2.touched && pwd2.invalid">
+                            <div *ngIf=pwd2.errors.required> le champ pwd est obligatoire</div>
+                            <div *ngIf=pwd2.errors.minlength> min 4!</div>
+                        </div>
+                        <label data-error="wrong" data-success="right" for="orangeForm-name"></label>
+                    </div>
+
+
+
+
+                    <div class="md-form">
+                        <div class="file-field big-2">
+                            <div class="btn btn-rounded peach-gradient btn-lg float-left">
+                                <span>Choisir une image</span>
+                                <input type="file" class="custom-file-input" id="customFile" name="img"
+                                    formControlName="img" accept="image/*" (change)=" onFileSelected($event)">
+                            </div>
+                            <div class="alert alert-warning" *ngIf="img.touched && img.invalid">
+                                <div *ngIf=img.errors.required> le champ img est obligatoire</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div class="modal-footer d-flex justify-content-center">
+                        <input class="btn btn-deep-orange" type="submit" value="Modifier"
+                            [disabled]="ModFormalabeurForm.invalid" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -13,6 +13,10 @@ export class FormateurService {
   private formateurinscriptioUrl = "http://localhost:3000/formateur/inscriptiopn";
   private formateurAjoutUrl = "http://localhost:3000/formateur/ajoutFormateur";
   private formateurSuppUrl = "http://localhost:3000/formateur/supprimerFormateur/";
+  private getFormateurUrl = "http://localhost:3000/formateur/getFormateur/";
+  private activateAdminUrl = "http://localhost:3000/formateur/activer/";
+  private getFormateurTUrl = "http://localhost:3000/formateur/getFormateurT/";
+  
 
   constructor(private http: HttpClient) { }
   //connection  
@@ -34,6 +38,18 @@ export class FormateurService {
   formateurSupprimer(email:String) {
     return this.http.delete<any>(this.formateurSuppUrl+email);
   }
+  getFormateur(id) {
+
+    return this.http.get<any>(this.getFormateurUrl+id);
+  }
+  getFormateurT(token) {
+
+    return this.http.get<any>(this.getFormateurTUrl+token);
+  }
+  activateAdmin(id) {
+    return this.http.get<any>(this.activateAdminUrl+id);
+  }
+  
 
   //for guards authGuard
   isLoggedIn() {
@@ -42,19 +58,49 @@ export class FormateurService {
 
   //for guard admin
   isLoggedAdmin() {
-    let token = localStorage.getItem('token');
-    const helper = new JwtHelperService();
-    const decodedLogin = helper.decodeToken(token);
-    console.log("token"+decodedLogin.admin);
+    if (!!localStorage.getItem('token')) {
+      let token = localStorage.getItem('token');
+      const helper = new JwtHelperService();
+      const decodedLogin = helper.decodeToken(token);
+      console.log("aaa" + !!localStorage.getItem('token'));
 
-    if (token) {
 
-      if (decodedLogin.admin === "active") {
-        return true;
+
+
+      if (token) {
+
+        if (decodedLogin.admin === "active" || decodedLogin.admin === "superadmin" ) {
+          return true;
+        }
+
       }
-
+      return false
     }
-    return false
+    else
+      return false;
+  }
+
+  isLoggedSuperAdmin() {
+    if (!!localStorage.getItem('token')) {
+      let token = localStorage.getItem('token');
+      const helper = new JwtHelperService();
+      const decodedLogin = helper.decodeToken(token);
+      console.log("aaa" + !!localStorage.getItem('token'));
+
+
+
+
+      if (token) {
+
+        if (decodedLogin.admin === "superadmin" ) {
+          return true;
+        }
+
+      }
+      return false
+    }
+    else
+      return false;
   }
 
   isLoggedFormateur() {

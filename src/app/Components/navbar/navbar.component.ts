@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from "../../../vendor/jquery/jquery";
+import { FormateurService } from 'src/app/Services/formateur.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,7 +9,11 @@ import * as $ from "../../../vendor/jquery/jquery";
 })
 export class NavbarComponent implements OnInit {
   title = 'projetdemo';
-  constructor() {
+  isLogged: boolean;
+  isLoggedAdmin: boolean;
+  isLoggedFormateur:boolean;
+  isLoggedSuperAdmin:boolean;
+  constructor(private _fu: FormateurService) {
     var navbarCollapse = function () {
       $(document).ready(function () {
         if ($("#mainNav").offset().top > 100) {
@@ -25,6 +30,11 @@ export class NavbarComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.isLogged = this._fu.isLoggedIn();
+    this.isLoggedAdmin = this._fu.isLoggedAdmin();
+    this.isLoggedFormateur=this._fu.isLoggedFormateur();
+    this.isLoggedSuperAdmin=this._fu.isLoggedSuperAdmin();
+    
   }
 
   // Collapse Navbar

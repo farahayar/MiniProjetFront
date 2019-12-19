@@ -10,7 +10,6 @@ import { HomeComponent } from './components/home/home.component';
 import { AjoutFormateurComponent } from './components/formateur/ajout-formateur/ajout-formateur.component';
 import { ListerFormateurComponent } from './components/formateur/lister-formateur/lister-formateur.component';
 import { ModifierFormateurComponent } from './components/formateur/modifier-formateur/modifier-formateur.component';
-import { AjoutAdminComponent } from './components/admin/ajout-admin/ajout-admin.component';
 import { ListerAdminComponent } from './components/admin/lister-admin/lister-admin.component';
 import { AjoutFormationComponent } from './components/formation/ajout-formation/ajout-formation.component';
 import { ListerFormationComponent } from './components/formation/lister-formation/lister-formation.component';
@@ -29,6 +28,12 @@ import { FormateurService } from './Services/formateur.service';
 import { AuthGuard } from './auth.guard';
 import { AdminGuard } from './Guards/admin.guard';
 import { InscriFormalabeurComponent } from './Components/Formalabeur/inscri-formalabeur/inscri-formalabeur.component';
+import { FormationFormalabeurComponent } from './Components/Formalabeur/formation-formalabeur/formation-formalabeur.component';
+import { ActiverAdminComponent } from './Components/formateur/activer-admin/activer-admin.component';
+import { ProfilFormalabeurComponent } from './Components/Formalabeur/profil-formalabeur/profil-formalabeur.component';
+import { ModifierFormalabeurComponent } from './Components/Formalabeur/modifier-formalabeur/modifier-formalabeur.component';
+import { ModifierFormateurProfilComponent } from './Components/formateur/modifier-formateur-profil/modifier-formateur-profil.component';
+import { FomateurProfilComponent } from './Components/formateur/fomateur-profil/fomateur-profil.component';
 
 
 @NgModule({
@@ -41,7 +46,7 @@ import { InscriFormalabeurComponent } from './Components/Formalabeur/inscri-form
     AjoutFormateurComponent,
     ListerFormateurComponent,
     ModifierFormateurComponent,
-    AjoutAdminComponent,
+    
     ListerAdminComponent,
     AjoutFormationComponent,
     ListerFormationComponent,
@@ -49,6 +54,12 @@ import { InscriFormalabeurComponent } from './Components/Formalabeur/inscri-form
     ConsulterFormationComponent,
     ConsulterFormateurComponent,
     InscriFormalabeurComponent,
+    FormationFormalabeurComponent,
+    ActiverAdminComponent,
+    ProfilFormalabeurComponent,
+    ModifierFormalabeurComponent,
+    ModifierFormateurProfilComponent,
+    FomateurProfilComponent,
     
   ],
   imports: [
